@@ -70,8 +70,8 @@ app.get('/posts/:id/ask', async (req, res) => {
     });
 });
 
-app.post('/conversations', async (req, res) => {
-    const { body, userId } = req.body;
+app.get('/conversations', async (req, res) => {
+    const { body, userId } = req.query;
     const now = new Date();
     const conversation = {
         id: uuid(),
@@ -146,8 +146,8 @@ app.post('/conversations', async (req, res) => {
     });
 });
 
-app.post('/conversations/:id/messages', async (req, res) => {
-    const { body } = req.body;
+app.get('/conversations/:id/messages', async (req, res) => {
+    const { body } = req.query;
     const { id: conversationId } = req.params;
     if (!conversationId) {
         res.status(400).send('Conversation id is required');
